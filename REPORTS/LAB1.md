@@ -178,7 +178,7 @@ Task added successfully.
 
 -----------------------
 ```
-![image](https://github.com/MariaProcopii/TMPS/assets/77497709/5c8ab5c0-275f-46c1-8989-e29b9012578f)
+![image](https://github.com/MariaProcopii/TMPS/assets/77497709/80f6654f-3562-479d-97c5-660c85a2de51)
 
 
 ## Conclusion:
