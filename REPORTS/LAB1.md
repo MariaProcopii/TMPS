@@ -177,9 +177,9 @@ Task added successfully.
         b
 
 -----------------------
-![img.png](img.png)
-
 ```
+![image](https://github.com/MariaProcopii/TMPS/assets/77497709/5c8ab5c0-275f-46c1-8989-e29b9012578f)
+
 
 ## Conclusion:
 By following these SOLID principles, we can create code that is easier to understand, 
