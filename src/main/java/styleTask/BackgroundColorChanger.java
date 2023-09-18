@@ -1,6 +1,7 @@
 package styleTask;
 
-import org.example.Task;
+import enumClasses.ColorOptions;
+import model.Task;
 
 public class BackgroundColorChanger implements StyleTaskStrategy{
     @Override

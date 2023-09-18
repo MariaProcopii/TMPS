@@ -1,6 +1,8 @@
-package org.example;
+package model;
 
-import styleTask.StyleTaskFactory;
+import builder.LongTaskBuilder;
+import enumClasses.TaskStatus;
+import factory.StyleTaskFactory;
 import styleTask.StyleTaskStrategy;
 
 import java.text.ParseException;
@@ -191,11 +193,5 @@ public class TaskManagerCLI {
         int taskId = scanner.nextInt();
         if(taskManager.getTaskById(taskId) == null) {System.out.println("Task not found.");}
         else {taskManager.deleteTask(taskId);}
-    }
-
-    public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
-        TaskManagerCLI taskManagerCLI = new TaskManagerCLI(taskManager);
-        taskManagerCLI.start();
     }
 }

@@ -1,4 +1,4 @@
-package styleTask;
+package enumClasses;
 
 public enum ColorOptions {
 

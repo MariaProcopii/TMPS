@@ -1,6 +1,6 @@
 package styleTask;
 
-import org.example.Task;
+import model.Task;
 
 public interface StyleTaskStrategy {
     void applyStyle(Task task, String arg);

@@ -1,4 +1,8 @@
-package org.example;
+package builder;
+
+import model.LongTask;
+import enumClasses.TaskStatus;
+import model.User;
 
 import java.util.Date;
 

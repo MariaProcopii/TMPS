@@ -1,6 +1,4 @@
-package org.example;
-
-import java.util.Date;
+package model;
 
 public class ShortTask implements Task {
     protected static int countID = 1;

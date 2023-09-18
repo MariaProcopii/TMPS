@@ -1,4 +1,4 @@
-package styleTask;
+package enumClasses;
 
 public enum FormatOptions {
     RESET("\u001B[0m"),

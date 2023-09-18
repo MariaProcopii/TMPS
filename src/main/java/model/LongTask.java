@@ -1,4 +1,7 @@
-package org.example;
+package model;
+
+import builder.LongTaskBuilder;
+import enumClasses.TaskStatus;
 
 import java.util.Date;
 public class LongTask extends ShortTask {

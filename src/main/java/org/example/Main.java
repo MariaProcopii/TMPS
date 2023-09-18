@@ -1,10 +1,12 @@
 package org.example;
 
-import styleTask.ColorOptions;
+import model.TaskManager;
+import model.TaskManagerCLI;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("kfofkorekfrf");
-
+        TaskManager taskManager = new TaskManager();
+        TaskManagerCLI taskManagerCLI = new TaskManagerCLI(taskManager);
+        taskManagerCLI.start();
     }
 }

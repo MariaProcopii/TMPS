@@ -1,4 +1,9 @@
-package styleTask;
+package factory;
+
+import styleTask.BackgroundColorChanger;
+import styleTask.StyleTaskStrategy;
+import styleTask.TextColorChanger;
+import styleTask.TextFormatChanger;
 
 public class StyleTaskFactory {
     public StyleTaskStrategy getStyleStrategy(String option){

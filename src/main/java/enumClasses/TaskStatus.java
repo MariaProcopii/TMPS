@@ -1,4 +1,4 @@
-package org.example;
+package enumClasses;
 
 public enum TaskStatus {
     TODO,

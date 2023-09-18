@@ -1,6 +1,7 @@
 package styleTask;
 
-import org.example.Task;
+import enumClasses.FormatOptions;
+import model.Task;
 
 public class TextFormatChanger implements StyleTaskStrategy {
     @Override

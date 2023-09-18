@@ -1,5 +1,6 @@
-package org.example;
+package model;
 
+import model.Task;
 import styleTask.StyleTaskStrategy;
 
 import java.util.*;
