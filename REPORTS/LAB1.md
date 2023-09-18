@@ -1,4 +1,4 @@
-# Creational Design Patterns
+# SOLID Principles
 
 
 ## Author: Procopii Maria
