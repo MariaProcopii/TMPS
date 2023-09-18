@@ -141,40 +141,43 @@ Enter assignee (optional):
 Task added successfully.
 
 -------------------
-        Select an option: 3
+Select an option: 3
 
-        =======Task by ID=======
+=======Task by ID=======
 
-        Enter task ID: 1
-        LongTask found:
+Enter task ID: 1
+LongTask found:
 
-        =======LongTask=======
-        [taskId]: 1
-        [title]: Lab 2 CS
-        [description]: Laborator nr 2 at cryptography.
-        [dueDate]: Fri Sep 22 00:00:00 EEST 2023
-        [status]: TODO
-        [assignee]: null
+=======LongTask=======
+[taskId]: 1
+[title]: Lab 2 CS
+[description]: Laborator nr 2 at cryptography.
+[dueDate]: Fri Sep 22 00:00:00 EEST 2023
+[status]: TODO
+[assignee]: null
         
 ----------------------
-        Select an option: 5
+Select an option: 5
 
-        =======Style Task=======
+=======Style Task=======
 
-        Enter task ID: 1
-        Enter Style method: [ text color, background color, text format ]
+Enter task ID: 1
+Enter Style method: [ text color, background color, text format ]
 <- Return Back: [B/b]
-        text color
-        Pick color: [ black, green, yellow, peach, magenta, cyan, white ]
-        green
-        Enter Style method: [ text color, background color, text format ]
+text color
+Pick color: [ black, green, yellow, peach, magenta, cyan, white ]
+green
+
+Enter Style method: [ text color, background color, text format ]
 <- Return Back: [B/b]
-        text format
-        Pick text format: [ bold, italic, underline ]
-        bold
-        Enter Style method: [ text color, background color, text format ]
+text format
+
+Pick text format: [ bold, italic, underline ]
+bold
+
+Enter Style method: [ text color, background color, text format ]
 <- Return Back: [B/b]
-        b
+b
 
 -----------------------
 ```
