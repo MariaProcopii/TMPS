@@ -167,23 +167,27 @@ Enter task ID: 1
 Enter Style method: [ text color, background color, text format ]
 <- Return Back: [B/b]
 text color
-Pick color: [ black, green, yellow, peach, magenta, cyan, white ]
+Pick color: [ black, green, yellow, peach, magenta, cyan, white ] 
 green
-
+Enter Style method: [ text color, background color, text format ]
+<- Return Back: [B/b]
+background color
+Pick color: [ black, green, yellow, peach, magenta, cyan, white ] 
+magentd
 Enter Style method: [ text color, background color, text format ]
 <- Return Back: [B/b]
 text format
-
 Pick text format: [ bold, italic, underline ]
-bold
-
+underline
 Enter Style method: [ text color, background color, text format ]
 <- Return Back: [B/b]
 b
 
 -----------------------
 ```
-![image](https://github.com/MariaProcopii/TMPS/assets/77497709/80f6654f-3562-479d-97c5-660c85a2de51)
+![image](https://github.com/MariaProcopii/TMPS/assets/77497709/7723adb2-5ead-4195-8f2a-bc6051d51884)
+
+
 
 
 ## Conclusion:
