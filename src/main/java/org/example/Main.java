@@ -1,7 +1,6 @@
 package org.example;
 
-import model.TaskManager;
-import model.TaskManagerCLI;
+import service.TaskManager;
 
 public class Main {
     public static void main(String[] args) {

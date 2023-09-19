@@ -1,20 +1,21 @@
-package model;
+package org.example;
 
 import builder.LongTaskBuilder;
 import enumClasses.TaskStatus;
 import factory.StyleTaskFactory;
+import model.*;
+import service.*;
 import styleTask.StyleTaskStrategy;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class TaskManagerCLI {
-    private TaskManager taskManager;
+    private ManageTask taskManager;
     private Scanner scanner;
 
-    public TaskManagerCLI(TaskManager taskManager) {
+    public TaskManagerCLI(ManageTask taskManager) {
         this.taskManager = taskManager;
         this.scanner = new Scanner(System.in);
     }

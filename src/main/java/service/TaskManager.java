@@ -1,11 +1,11 @@
-package model;
+package service;
 
 import model.Task;
 import styleTask.StyleTaskStrategy;
 
 import java.util.*;
 
-public class TaskManager {
+public class TaskManager implements ManageTask{
     private ArrayList<Task> tasks = new ArrayList<>();
     private StyleTaskStrategy strategy;
 
