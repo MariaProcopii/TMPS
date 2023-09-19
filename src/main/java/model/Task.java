@@ -10,4 +10,6 @@ public interface Task {
     public User getAssignee();
 
     public void setAssignee(User assignee);
+
+    String toString();
 }

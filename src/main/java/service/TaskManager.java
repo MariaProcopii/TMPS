@@ -2,12 +2,23 @@ package service;
 
 import model.Task;
 import styleTask.StyleTaskStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.*;
-
-public class TaskManager implements ManageTask{
-    private ArrayList<Task> tasks = new ArrayList<>();
+public class TaskManager implements ManageTask {
+    private static TaskManager instance;
+    private List<Task> tasks = new ArrayList<>();
     private StyleTaskStrategy strategy;
+
+    private TaskManager() {
+    }
+
+    public static TaskManager getInstance() {
+        if (instance == null) {
+            instance = new TaskManager();
+        }
+        return instance;
+    }
 
     public void setStrategy(StyleTaskStrategy strategy) {
         this.strategy = strategy;
@@ -17,7 +28,7 @@ public class TaskManager implements ManageTask{
         tasks.add(task);
     }
 
-    public void listTask(){
+    public void listTask() {
         tasks.forEach(System.out::println);
     }
 
@@ -30,7 +41,7 @@ public class TaskManager implements ManageTask{
         return null;
     }
 
-    public void styleTask(Task task, String argument){
+    public void styleTask(Task task, String argument) {
         strategy.applyStyle(task, argument);
     }
 
