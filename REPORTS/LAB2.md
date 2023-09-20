@@ -22,7 +22,7 @@
 
 ## Implementation:
 *Builder Design Pattern*
-I my project builder is represented by class `LomgTaskBuilder` which is used to create a new instance of `LongTask`
+I my project from the first lab, builder is represented by class `LomgTaskBuilder` which is used to create a new instance of `LongTask`
 objects with various attributes. The builder class has public fields for attributes like title, description, dueDate, status, and assignee.
 The builder class has a constructor that takes a mandatory parameter description. This parameter ensures that every task must have a description.
 The builder class provides setter methods for each optional attribute (e.g., title, dueDate, status, assignee). 
@@ -86,6 +86,19 @@ public class Main {
     }
 }
 ```
+
+## Conclusion:
+
+**Builder Pattern:**
+The Builder pattern helps create complex objects by separating the construction process from the actual representation.
+It's useful for objects with optional parameters, making code more readable and maintainable.
+
+**Factory Pattern:**
+The Factory pattern abstracts object creation by providing an interface for creating objects. Subclasses or implementing classes can change the type of objects produced. This promotes loose coupling, enhancing flexibility and maintainability.
+
+**Singleton Pattern:**
+The Singleton pattern ensures that a class has only one instance throughout an application's life. It's used when a single point of control 
+or global access is needed, but it should be used sparingly to avoid global state and tight coupling.
 
 
 
