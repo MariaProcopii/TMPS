@@ -22,19 +22,15 @@ public class ShortTask implements Task {
         this.description = description;
     }
 
-    public User getAssignee() {
-        return assignee;
-    }
-
     public void setAssignee(User assignee) {
         this.assignee = assignee;
     }
 
     @Override
-    public String toString() {
-        return "\n=======ShortTask=======\n" +
+    public void listTask() {
+        System.out.println("\n=======ShortTask=======\n" +
                 "[taskId]: " + taskId + "\n" +
                 "[description]: " + description + "\n" +
-                "[assignee]: " + assignee;
+                "[assignee]: " + assignee);
     }
 }

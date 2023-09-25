@@ -1,14 +1,20 @@
 package styleTask;
 
 import enumClasses.ColorOptions;
+import enumClasses.FormatOptions;
 import model.Task;
 
 public class BackgroundColorChanger implements StyleTaskStrategy{
     @Override
     public void applyStyle(Task task, String arg) {
         ColorOptions colorCode = getColorCode(arg);
-        task.setDescription(colorCode + task.getDescription() + "\u001B[0m");
+        String description = task.getDescription();
+        if(description.charAt(1) == '['){
+            description = task.getDescription().substring(4);
+        }
+        task.setDescription(colorCode + description + "\u001B[0m");
     }
+
 
     private ColorOptions getColorCode(String colorName) {
         return switch (colorName.toLowerCase()) {

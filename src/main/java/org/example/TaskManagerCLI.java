@@ -1,23 +1,25 @@
 package org.example;
 
+import Decorator.*;
 import builder.LongTaskBuilder;
-import enumClasses.TaskStatus;
+import enumClasses.*;
 import factory.StyleTaskFactory;
 import model.*;
-import service.*;
+import service.TaskManager;
 import styleTask.StyleTaskStrategy;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.text.*;
+import java.util.*;
 
 public class TaskManagerCLI {
-    private ManageTask taskManager;
+    private TaskManager taskManager;
     private Scanner scanner;
+    private User assignee;
 
-    public TaskManagerCLI(ManageTask taskManager) {
+    public TaskManagerCLI(TaskManager taskManager, User assignee) {
         this.taskManager = taskManager;
+        this.assignee = assignee;
         this.scanner = new Scanner(System.in);
+
     }
 
     public void start() {
@@ -29,8 +31,9 @@ public class TaskManagerCLI {
             System.out.println("[3]. List Task by ID");
             System.out.println("[4]. List All Tasks");
             System.out.println("[5]. Change Task Style");
-            System.out.println("[6]. Delete LongTask");
-            System.out.println("[7]. Exit");
+            System.out.println("[6]. Delete Task");
+            System.out.println("[7]. Delete All Tasks");
+            System.out.println("[8]. Exit");
             System.out.print("\nSelect an option: ");
 
             int choice = scanner.nextInt();
@@ -43,7 +46,8 @@ public class TaskManagerCLI {
                 case 4 -> listAllTasks();
                 case 5 -> pickStyleMethod();
                 case 6 -> deleteTask();
-                case 7 -> exit = true;
+                case 7 -> deleteAllTasks();
+                case 8 -> exit = true;
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
@@ -64,13 +68,7 @@ public class TaskManagerCLI {
 
         ShortTask shortTask = new ShortTask();
         shortTask.setDescription(description);
-
-        System.out.print("Enter assignee (optional): ");
-        String assigneeName = scanner.nextLine();
-        if (!assigneeName.isEmpty()) {
-            User assignee = new User(assigneeName, "password");
-            shortTask.setAssignee(assignee);
-        }
+        shortTask.setAssignee(assignee);
 
         taskManager.addTask(shortTask);
         System.out.println("Task added successfully.");
@@ -116,12 +114,7 @@ public class TaskManagerCLI {
             taskBuilder.status(status);
         }
 
-        System.out.print("Enter assignee (optional): ");
-        String assigneeName = scanner.nextLine();
-        if (!assigneeName.isEmpty()) {
-            User assignee = new User(assigneeName, "password"); // Create a temporary user
-            taskBuilder.assignee(assignee);
-        }
+        taskBuilder.assignee(assignee);
 
         LongTask task = taskBuilder.build();
         taskManager.addTask(task);
@@ -135,8 +128,8 @@ public class TaskManagerCLI {
         Task task = taskManager.getTaskById(taskId);
 
         if (task != null) {
-            System.out.println("LongTask found:");
-            System.out.println(task);
+            System.out.println("Task found:");
+            task.listTask();
         } else {
             System.out.println("Task not found.");
         }
@@ -148,15 +141,24 @@ public class TaskManagerCLI {
 
     private void pickStyleMethod(){
         System.out.println("\n=======Style Task=======\n");
-        System.out.print("Enter task ID: ");
-        int taskId = scanner.nextInt();
-        scanner.nextLine();
-        Task task = taskManager.getTaskById(taskId);
+        System.out.print("Enter task ID( enter [all] to style all tasks ): ");
+        String alltask = scanner.nextLine().toLowerCase().trim();
+        Task task;
+
+        if(!alltask.equals("all")){
+            int taskId = Integer.parseInt(alltask);
+            task = taskManager.getTaskById(taskId);
+        }
+        else{
+            task = null;
+        }
+
 
         String option = "";
-        if (task != null) {
+        if (task != null || alltask.equals("all")) {
 
             boolean back = false;
+            StyleTaskFactory styleTaskFactory = new StyleTaskFactory();
             while (!back){
                 System.out.println("Enter Style method: [ text color, background color, text format ]");
                 System.out.println("<- Return Back: [B/b]");
@@ -166,12 +168,17 @@ public class TaskManagerCLI {
                     back = true;
                 }
                 else {
-                    StyleTaskFactory styleTaskFactory = new StyleTaskFactory();
                     StyleTaskStrategy strategy = styleTaskFactory.getStyleStrategy(option);
 
                     taskManager.setStrategy(strategy);
                     String argument = pickStyleArg(option);
-                    taskManager.styleTask(task, argument);
+
+                    if(!alltask.equals("all")){
+                        taskManager.styleTask(task, argument);
+                    }
+                    else{
+                        taskManager.styleAllTasks(argument);
+                    }
                 }
             }
         } else {
@@ -194,5 +201,9 @@ public class TaskManagerCLI {
         int taskId = scanner.nextInt();
         if(taskManager.getTaskById(taskId) == null) {System.out.println("Task not found.");}
         else {taskManager.deleteTask(taskId);}
+    }
+
+    private void deleteAllTasks(){
+        taskManager.deleteAllTasks();
     }
 }

@@ -7,7 +7,11 @@ public class TextFormatChanger implements StyleTaskStrategy {
     @Override
     public void applyStyle(Task task, String arg) {
         FormatOptions colorCode = getColorCode(arg);
-        task.setDescription(colorCode + task.getDescription() + "\u001B[0m");
+        String description = task.getDescription();
+        if(description.charAt(1) == '['){
+            description = task.getDescription().substring(3);
+        }
+        task.setDescription(colorCode + description + "\u001B[0m");
     }
 
     private FormatOptions getColorCode(String colorName) {

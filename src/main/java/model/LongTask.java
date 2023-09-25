@@ -42,14 +42,13 @@ public class LongTask extends ShortTask {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "\n=======LongTask=======\n" +
+    public void listTask() {
+        System.out.println("\n=======LongTask=======\n" +
                 "[taskId]: " + taskId + "\n" +
                 "[title]: " + title + "\n" +
                 "[description]: " + description + "\n" +
                 "[dueDate]: " + dueDate + "\n" +
                 "[status]: " + status + "\n" +
-                "[assignee]: " + assignee;
+                "[assignee]: " + assignee);
     }
 }
