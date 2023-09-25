@@ -29,6 +29,7 @@ and scalability.
 *Structural Design Pattern*
 
 *Flyweight design pattern*
+
 The Flyweight design pattern is a structural design pattern that focuses on optimizing the use of memory or storage by 
 sharing as much as possible among multiple objects. It is used when a system has a large number of similar objects, and 
 the goal is to reduce the overall memory usage and improve performance.
@@ -58,6 +59,7 @@ return styleTaskStrategy;
 ```
 
 *Proxy design pattern*
+
 The Proxy design pattern is a structural design pattern that provides a surrogate or placeholder for another object to control access 
 to it. In essence, it acts as an intermediary, allowing you to add an extra level of control over how, when, and where you interact with
 an object. The Proxy pattern is particularly useful when you want to control access to an object, add lazy loading, implement access control,
@@ -79,7 +81,6 @@ public void deleteTask(int taskId) {
 ```
 
 *Composite design pattern*
-
 
 The Composite design pattern is a structural design pattern that allows to compose objects into tree structures to represent
 part-whole hierarchies. It lets clients treat individual objects and compositions of objects (composites) uniformly. This pattern
