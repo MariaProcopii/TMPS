@@ -1,6 +1,8 @@
 package service;
 
+import enumClasses.TaskStatus;
 import model.Task;
+import state.TaskState;
 import styleTask.StyleTaskStrategy;
 
 import java.util.ArrayList;
@@ -16,4 +18,9 @@ public interface TaskManager {
     void deleteTask(int taskId);
 
     void deleteAllTasks();
+    void listByStatusCriteria(TaskStatus iterationCriteria);
+    void editDescription(int taskId, String description);
+    void editStatus(int taskId, TaskState taskState);
+    void undoEdit(int taskId);
+    void save(int taskId, String description);
 }

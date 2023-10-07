@@ -1,11 +1,12 @@
 package org.example;
 
-import Decorator.*;
 import builder.LongTaskBuilder;
 import enumClasses.*;
 import factory.StyleTaskFactory;
+import factory.TaskStateFactory;
 import model.*;
 import service.TaskManager;
+import state.TaskState;
 import styleTask.StyleTaskStrategy;
 import java.text.*;
 import java.util.*;
@@ -30,10 +31,14 @@ public class TaskManagerCLI {
             System.out.println("[2]. Add Short Task");
             System.out.println("[3]. List Task by ID");
             System.out.println("[4]. List All Tasks");
-            System.out.println("[5]. Change Task Style");
-            System.out.println("[6]. Delete Task");
-            System.out.println("[7]. Delete All Tasks");
-            System.out.println("[8]. Exit");
+            System.out.println("[5]. List By Status");
+            System.out.println("[6]. Change Task Style");
+            System.out.println("[7]. Delete Task");
+            System.out.println("[8]. Delete All Tasks");
+            System.out.println("[9]. Edit Task Description");
+            System.out.println("[10]. Edit Task Status");
+            System.out.println("[11]. Undo To Last Save Point");
+            System.out.println("[12]. Exit");
             System.out.print("\nSelect an option: ");
 
             int choice = scanner.nextInt();
@@ -44,10 +49,14 @@ public class TaskManagerCLI {
                 case 2 -> addShortTask();
                 case 3 -> listTaskById();
                 case 4 -> listAllTasks();
-                case 5 -> pickStyleMethod();
-                case 6 -> deleteTask();
-                case 7 -> deleteAllTasks();
-                case 8 -> exit = true;
+                case 5 -> listByStatusCriteria();
+                case 6 -> pickStyleMethod();
+                case 7 -> deleteTask();
+                case 8 -> deleteAllTasks();
+                case 9 -> editTaskDescription();
+                case 10 -> editTakStatus();
+                case 11 -> undoEdit();
+                case 12 -> exit = true;
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }
@@ -66,9 +75,18 @@ public class TaskManagerCLI {
             description = scanner.nextLine();
         }
 
+        System.out.print("Enter task status [TODO, IN_PROGRESS, COMPLETED, optional]: ");
+        String statusString = scanner.nextLine();
+        TaskState taskState = null;
+        if (!statusString.isEmpty()) {
+            taskState = new TaskStateFactory().getTaskState(statusString);
+        }
+
         ShortTask shortTask = new ShortTask();
         shortTask.setDescription(description);
         shortTask.setAssignee(assignee);
+        shortTask.setStatus(taskState);
+
 
         taskManager.addTask(shortTask);
         System.out.println("Task added successfully.");
@@ -107,11 +125,11 @@ public class TaskManagerCLI {
             }
         }
 
-        System.out.print("Enter task status [TODO, IN_PROGRESS, COMPLETED, ON_HOLD, optional]: ");
+        System.out.print("Enter task status [TODO, IN_PROGRESS, COMPLETED, optional]: ");
         String statusString = scanner.nextLine();
         if (!statusString.isEmpty()) {
-            TaskStatus status = TaskStatus.valueOf(statusString);
-            taskBuilder.status(status);
+            TaskState taskState = new TaskStateFactory().getTaskState(statusString);
+            taskBuilder.status(taskState);
         }
 
         taskBuilder.assignee(assignee);
@@ -205,5 +223,56 @@ public class TaskManagerCLI {
 
     private void deleteAllTasks(){
         taskManager.deleteAllTasks();
+    }
+
+    private void editTaskDescription(){
+        System.out.print("Enter task ID: ");
+        int taskId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter new description: ");
+        String description = scanner.nextLine();
+        taskManager.editDescription(taskId, description);
+
+        System.out.print("Save to history ? (yes/no): ");
+        String choice = scanner.nextLine();
+        if(choice.equals("yes")){
+            taskManager.save(taskId, description);
+        }
+    }
+
+    private void editTakStatus(){
+        System.out.print("Enter task ID: ");
+        int taskId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter new status [TODO, IN_PROGRESS, COMPLETED]: ");
+        String statusString = scanner.nextLine();
+
+        while (statusString.isEmpty()){
+            System.out.print("Enter new status [TODO, IN_PROGRESS, COMPLETED]: ");
+            statusString = scanner.nextLine();
+        }
+
+        TaskState taskState = new TaskStateFactory().getTaskState(statusString);
+        taskManager.editStatus(taskId, taskState);
+    }
+
+    private void undoEdit(){
+        System.out.print("Enter task ID: ");
+        int taskId = scanner.nextInt();
+        taskManager.undoEdit(taskId);
+    }
+
+    private void listByStatusCriteria(){
+        System.out.print("Enter status [TODO, IN_PROGRESS, COMPLETED]: ");
+        String statusString = scanner.nextLine();
+
+        while (statusString.isEmpty()){
+            System.out.print("Enter status [TODO, IN_PROGRESS, COMPLETED]: ");
+            statusString = scanner.nextLine();
+        }
+
+        taskManager.listByStatusCriteria(TaskStatus.valueOf(statusString));
     }
 }

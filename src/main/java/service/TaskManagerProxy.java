@@ -1,12 +1,14 @@
 package service;
 import enumClasses.ColorOptions;
+import enumClasses.TaskStatus;
 import model.Task;
+import state.TaskState;
 import styleTask.StyleTaskStrategy;
 
 import java.util.ArrayList;
 
 public class TaskManagerProxy implements TaskManager {
-    private TaskManagerImplement realTaskManager = TaskManagerImplement.getInstance();
+    private TaskManager realTaskManager = TaskManagerImplement.getInstance();
         private boolean isAdmin;
 
     public TaskManagerProxy(boolean isAdmin) {
@@ -87,6 +89,31 @@ public class TaskManagerProxy implements TaskManager {
                     "\n=====Only admins can delete tasks.=====" +
                     ColorOptions.RESET);
         }
+    }
+
+    @Override
+    public void listByStatusCriteria(TaskStatus iterationCriteria) {
+        realTaskManager.listByStatusCriteria(iterationCriteria);
+    }
+
+    @Override
+    public void editDescription(int taskId, String description) {
+        realTaskManager.editDescription(taskId, description);
+    }
+
+    @Override
+    public void editStatus(int taskId, TaskState taskState) {
+        realTaskManager.editStatus(taskId, taskState);
+    }
+
+    @Override
+    public void undoEdit(int taskId) {
+        realTaskManager.undoEdit(taskId);
+    }
+
+    @Override
+    public void save(int taskId, String description) {
+        realTaskManager.save(taskId, description);
     }
 }
 

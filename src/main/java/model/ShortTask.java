@@ -1,9 +1,12 @@
 package model;
 
+import state.TaskState;
+
 public class ShortTask implements Task {
     protected static int countID = 1;
     protected int taskId;
     protected String description;
+    protected TaskState status;
     protected User assignee;
 
     public ShortTask(){
@@ -26,11 +29,25 @@ public class ShortTask implements Task {
         this.assignee = assignee;
     }
 
+    public TaskState getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskState status) {
+        this.status = status;
+    }
+
     @Override
     public void listTask() {
         System.out.println("\n=======ShortTask=======\n" +
                 "[taskId]: " + taskId + "\n" +
                 "[description]: " + description + "\n" +
+                "[status]: " + (status == null ? "null": status.getTaskStatus()) + "\n" +
                 "[assignee]: " + assignee);
+    }
+
+    @Override
+    public User getUser() {
+        return assignee;
     }
 }

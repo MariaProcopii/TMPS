@@ -2,12 +2,13 @@ package model;
 
 import builder.LongTaskBuilder;
 import enumClasses.TaskStatus;
+import state.TaskState;
 
 import java.util.Date;
 public class LongTask extends ShortTask {
     private String title;
     private Date dueDate;
-    private TaskStatus status;
+
 
     public LongTask(LongTaskBuilder builder) {
         this.title = builder.title;
@@ -15,8 +16,14 @@ public class LongTask extends ShortTask {
         this.dueDate = builder.dueDate;
         this.status = builder.status;
         this.assignee = builder.assignee;
+        styleText();
     }
 
+    public void styleText(){
+        if(title != null && status != null) {
+            status.styleTheState(this);
+        }
+    }
 
     public String getTitle() {
         return title;
@@ -26,20 +33,8 @@ public class LongTask extends ShortTask {
         this.title = title;
     }
 
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public TaskStatus getStatus() {
+    public TaskState getStatus() {
         return status;
-    }
-
-    public void setStatus(TaskStatus status) {
-        this.status = status;
     }
 
     public void listTask() {
@@ -48,7 +43,7 @@ public class LongTask extends ShortTask {
                 "[title]: " + title + "\n" +
                 "[description]: " + description + "\n" +
                 "[dueDate]: " + dueDate + "\n" +
-                "[status]: " + status + "\n" +
+                "[status]: " + (status == null ? "null": status.getTaskStatus()) + "\n" +
                 "[assignee]: " + assignee);
     }
 }

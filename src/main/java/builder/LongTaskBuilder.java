@@ -4,6 +4,7 @@ import model.LongTask;
 import enumClasses.TaskStatus;
 import model.RegularUser;
 import model.User;
+import state.TaskState;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class LongTaskBuilder {
     public String title;
     public String description;
     public Date dueDate;
-    public TaskStatus status;
+    public TaskState status;
     public User assignee;
 
     public LongTaskBuilder(String description) {
@@ -28,7 +29,7 @@ public class LongTaskBuilder {
         return this;
     }
 
-    public LongTaskBuilder status(TaskStatus status) {
+    public LongTaskBuilder status(TaskState status) {
         this.status = status;
         return this;
     }

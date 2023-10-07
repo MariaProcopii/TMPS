@@ -5,7 +5,9 @@ import styleTask.StyleTaskStrategy;
 import styleTask.TextColorChanger;
 import styleTask.TextFormatChanger;
 
+import java.util.AbstractSet;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 //FlyWeight design pattern
